@@ -5,14 +5,10 @@ const port = 3000
 // Send to router
 const router = require('./src/router')
 
-app.use('/api', router,
-  function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "*");
-    res.setHeader("Access-Control-Allow-Methods", "*");
-    next();
-  }
-)
+const cors = require('cors')
+app.use(cors({origin: '*'}))
+
+app.use('/api', router)
 
 
 app.listen(port, () => {
